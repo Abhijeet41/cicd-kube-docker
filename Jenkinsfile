@@ -54,17 +54,17 @@ pipeline {
             }
 
             steps {
-                withSonarQubeEnv('sonar-pro') {
-                    echo "SonarQube URL: http://18.208.131.124:80/api/server/version"
-                    sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
-                   -Dsonar.projectName=vprofile-repo \
-                   -Dsonar.projectVersion=1.0 \
-                   -Dsonar.sources=src/ \
-                   -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/ \
-                   -Dsonar.junit.reportsPath=target/surefire-reports/ \
-                   -Dsonar.jacoco.reportsPath=target/jacoco.exec \
-                   -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
-                }
+                 withSonarQubeEnv('sonar-pro') {
+                            sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
+                                -Dsonar.projectName=vprofile-repo \
+                                -Dsonar.projectVersion=1.0 \
+                                -Dsonar.sources=src/ \
+                                -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/ \
+                                -Dsonar.junit.reportsPath=target/surefire-reports/ \
+                                -Dsonar.jacoco.reportsPath=target/jacoco.exec \
+                                -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml \
+                                -Dsonar.host.url=http://18.208.131.124:80'''
+                        }
 
                 timeout(time: 10, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: true
