@@ -67,7 +67,7 @@ pipeline {
                 }
             }
         }
-        #build our docker image
+        //build our docker image
         stage('Build App Image'){
            steps {
               script {
@@ -75,7 +75,7 @@ pipeline {
               }
            }
         }
-        #upload docker image to docker hub
+        //upload docker image to docker hub
         stage('Upload Image'){
            steps{
              script {
@@ -86,13 +86,13 @@ pipeline {
              }
            }
         }
-        #remove docker image
+        //remove docker image
         stage('Remove Unsued docker image'){
             steps{
               sh "docker rmi $registry:V$BUILD_NUMBER"
             }
         }
-        # next stage is deploying image to kubernetes cluser and we are going to run helm command from kops
+        // next stage is deploying image to kubernetes cluser and we are going to run helm command from kops
 
         stage('Kubernetes Deploy'){
           agent {label 'KOPS'}
