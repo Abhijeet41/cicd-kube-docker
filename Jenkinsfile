@@ -54,6 +54,7 @@ pipeline {
 
             steps {
                 withSonarQubeEnv('sonar-pro') {
+                    echo "SonarQube URL: http://18.208.131.124:80/api/server/version"
                     sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
                    -Dsonar.projectName=vprofile-repo \
                    -Dsonar.projectVersion=1.0 \
