@@ -3,6 +3,7 @@ pipeline {
     agent any
     tools {
         maven "MAVEN_HOME"
+        jdk "OracleJDK11"
     }
     environment {
         registry = "abhi41/vproappdock"
